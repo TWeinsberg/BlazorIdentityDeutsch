@@ -1,0 +1,14 @@
+# Platzierung der Klammern
+[*.cs]
+# Style für Methodenklammern: { in derselben Zeile wie die Methode
+csharp_new_line_before_open_brace = none
+# Für else und else if Klammern auf derselben Zeile wie }
+csharp_new_line_before_else = false
+
+# Leerzeichen vor Klammer in Methoden
+csharp_space_before_open_square_bracket = true
+# Leerzeichen zwischen Schlüsselwort und Klammer (if (), for (), etc.)
+csharp_space_after_keywords_in_control_flow_statements = true
+
+# Setzt else if nicht in eine neue Zeile
+csharp_new_line_before_else_if = false

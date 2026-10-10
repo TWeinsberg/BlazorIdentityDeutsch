@@ -1,7 +1,9 @@
-﻿@page "/Account/InvalidUser"
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<IdentityTexts> T
+@page "/Account/InvalidUser"
 
-<PageTitle>Invalid user</PageTitle>
+<PageTitle>@T["Invalid user"]</PageTitle>
 
-<h3>Invalid user</h3>
+<h3>@T["Invalid user"]</h3>
 
 <StatusMessage />

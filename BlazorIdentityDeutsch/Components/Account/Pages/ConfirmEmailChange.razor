@@ -1,4 +1,6 @@
-﻿@page "/Account/ConfirmEmailChange"
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<IdentityTexts> T
+@page "/Account/ConfirmEmailChange"
 
 @using System.Text
 @using Microsoft.AspNetCore.Identity
@@ -9,9 +11,9 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject IdentityRedirectManager RedirectManager
 
-<PageTitle>Confirm email change</PageTitle>
+<PageTitle>@T["Confirm email change"]</PageTitle>
 
-<h1>Confirm email change</h1>
+<h1>@T["Confirm email change"]</h1>
 
 <StatusMessage Message="@message" />
 
@@ -35,14 +37,14 @@
         if (UserId is null || Email is null || Code is null)
         {
             RedirectManager.RedirectToWithStatus(
-                "Account/Login", "Error: Invalid email change confirmation link.", HttpContext);
+                "Account/Login", T["Error: Invalid email change confirmation link."].Value, HttpContext);
             return;
         }
 
         var user = await UserManager.FindByIdAsync(UserId);
         if (user is null)
         {
-            message = "Unable to find user with Id '{userId}'";
+            message = T["Unable to find user with Id '{userId}'"].Value;
             return;
         }
 
@@ -50,7 +52,7 @@
         var result = await UserManager.ChangeEmailAsync(user, Email, code);
         if (!result.Succeeded)
         {
-            message = "Error changing email.";
+            message = T["Error changing email."].Value;
             return;
         }
 
@@ -59,11 +61,11 @@
         var setUserNameResult = await UserManager.SetUserNameAsync(user, Email);
         if (!setUserNameResult.Succeeded)
         {
-            message = "Error changing user name.";
+            message = T["Error changing user name."].Value;
             return;
         }
 
         await SignInManager.RefreshSignInAsync(user);
-        message = "Thank you for confirming your email change.";
+        message = T["Thank you for confirming your email change."].Value;
     }
 }

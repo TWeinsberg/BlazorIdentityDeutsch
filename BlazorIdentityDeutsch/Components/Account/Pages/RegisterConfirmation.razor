@@ -1,4 +1,6 @@
-﻿@page "/Account/RegisterConfirmation"
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<IdentityTexts> T
+@page "/Account/RegisterConfirmation"
 
 @using System.Text
 @using Microsoft.AspNetCore.Identity
@@ -10,22 +12,22 @@
 @inject NavigationManager NavigationManager
 @inject IdentityRedirectManager RedirectManager
 
-<PageTitle>Register confirmation</PageTitle>
+<PageTitle>@T["Register confirmation"]</PageTitle>
 
-<h1>Register confirmation</h1>
+<h1>@T["Register confirmation"]</h1>
 
 <StatusMessage Message="@statusMessage" />
 
 @if (emailConfirmationLink is not null)
 {
     <p>
-        This app does not currently have a real email sender registered, see <a href="https://aka.ms/aspaccountconf">these docs</a> for how to configure a real email sender.
-        Normally this would be emailed: <a href="@emailConfirmationLink">Click here to confirm your account</a>
+        This app does not currently have a real email sender registered, see <a href="https://aka.ms/aspaccountconf">@T["these docs"]</a> for how to configure a real email sender.
+        Normally this would be emailed: <a href="@emailConfirmationLink">@T["Click here to confirm your account"]</a>
     </p>
 }
 else
 {
-    <p role="alert">Please check your email to confirm your account.</p>
+    <p role="alert">@T["Please check your email to confirm your account."]</p>
 }
 
 @code {
@@ -53,7 +55,7 @@ else
         if (user is null)
         {
             HttpContext.Response.StatusCode = StatusCodes.Status404NotFound;
-            statusMessage = "Error finding user for unspecified email";
+            statusMessage = T["Error finding user for unspecified email"].Value;
         }
         else if (EmailSender is IdentityNoOpEmailSender)
         {
