@@ -1,10 +1,12 @@
-﻿@implements IDisposable
+﻿@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<IdentityTexts> T
+@implements IDisposable
 
 @inject NavigationManager NavigationManager
 
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">Blazor-Identity Deutsch</a>
+        <a class="navbar-brand" href="">@T["Blazor-Identity (EN)"]</a>
     </div>
 </div>
 
@@ -14,28 +16,49 @@
     <nav class="nav flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> @T["Home"]
             </NavLink>
         </div>
 
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> @T["Counter"]
             </NavLink>
         </div>
 
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+                <span class="bi bi-clouds-nav-menu" aria-hidden="true"></span> @T["Weather"]
             </NavLink>
         </div>
 
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="auth">
-                <span class="bi bi-lock-nav-menu" aria-hidden="true"></span> Auth Required
+                <AuthorizeView>
+                    <Authorized>
+                        <span class="bi bi-unlock-nav-menu" aria-hidden="true"></span> @T["You are authenticated"]
+                    </Authorized>
+                    <NotAuthorized>
+                        <span class="bi bi-lock-nav-menu" aria-hidden="true"></span> @T["Auth Required"]
+                    </NotAuthorized>
+                </AuthorizeView>
             </NavLink>
         </div>
 
+        @*
+         * Step2.8 Menüeintrag nur für Admin
+         * Der Menüeintrag wird nur Administratoren angezeigt.
+         * Die eigentliche Zugriffssicherung erfolgt zusätzlich durch [Authorize(Roles = ApplicationRoles.Admin)]
+        *@
+        <AuthorizeView Roles="Admin">
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="admin/users">
+                        <span class="bi bi-person-gear-nav-menu text-white" aria-hidden="true"></span>@T["Benutzerverwaltung"]
+                    </NavLink>
+                </div>
+            </Authorized>
+        </AuthorizeView>
         <AuthorizeView>
             <Authorized>
                 <div class="nav-item px-3">
@@ -48,7 +71,7 @@
                         <AntiforgeryToken />
                         <input type="hidden" name="ReturnUrl" value="@currentUrl" />
                         <button type="submit" class="nav-link">
-                            <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> Logout
+                            <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> @T["Logout"]
                         </button>
                     </form>
                 </div>
@@ -56,12 +79,12 @@
             <NotAuthorized>
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="Account/Register">
-                        <span class="bi bi-person-nav-menu" aria-hidden="true"></span> Register
+                        <span class="bi bi-person-nav-menu" aria-hidden="true"></span> @T["Register"]
                     </NavLink>
                 </div>
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="Account/Login">
-                        <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span> Login
+                        <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span> @T["Login"]
                     </NavLink>
                 </div>
             </NotAuthorized>

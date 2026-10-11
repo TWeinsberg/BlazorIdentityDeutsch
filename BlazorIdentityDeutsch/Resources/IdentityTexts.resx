@@ -1,5 +1,110 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -36,14 +141,29 @@
   <data name="Associate your {0} account." xml:space="preserve">
     <value>Associate your {0} account.</value>
   </data>
+  <data name="Auth" xml:space="preserve">
+    <value>Auth</value>
+  </data>
+  <data name="Auth Required" xml:space="preserve">
+    <value>Auth Required</value>
+  </data>
   <data name="Authenticator app" xml:space="preserve">
     <value>Authenticator app</value>
   </data>
   <data name="Authenticator code" xml:space="preserve">
     <value>Authenticator code</value>
   </data>
+  <data name="Balmy" xml:space="preserve">
+    <value>Balmy</value>
+  </data>
   <data name="before you can log in with a recovery code." xml:space="preserve">
     <value>before you can log in with a recovery code.</value>
+  </data>
+  <data name="Blazor-Identity (EN)" xml:space="preserve">
+    <value>Blazor-Identity (EN)</value>
+  </data>
+  <data name="Bracing" xml:space="preserve">
+    <value>Bracing</value>
   </data>
   <data name="Change email" xml:space="preserve">
     <value>Change email</value>
@@ -54,6 +174,9 @@
   <data name="Change your account settings" xml:space="preserve">
     <value>Change your account settings</value>
   </data>
+  <data name="Chilly" xml:space="preserve">
+    <value>Chilly</value>
+  </data>
   <data name="Choose your username." xml:space="preserve">
     <value>Choose your username.</value>
   </data>
@@ -62,6 +185,9 @@
   </data>
   <data name="click here to log in" xml:space="preserve">
     <value>click here to log in</value>
+  </data>
+  <data name="Click me" xml:space="preserve">
+    <value>Click me</value>
   </data>
   <data name="Configure authenticator app" xml:space="preserve">
     <value>Configure authenticator app</value>
@@ -81,8 +207,20 @@
   <data name="Continue" xml:space="preserve">
     <value>Continue</value>
   </data>
+  <data name="Cool" xml:space="preserve">
+    <value>Cool</value>
+  </data>
+  <data name="Counter" xml:space="preserve">
+    <value>Counter</value>
+  </data>
   <data name="Create a new account." xml:space="preserve">
     <value>Create a new account.</value>
+  </data>
+  <data name="Current count:" xml:space="preserve">
+    <value>Current count:</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
@@ -249,6 +387,9 @@
   <data name="Forgot your password?" xml:space="preserve">
     <value>Forgot your password?</value>
   </data>
+  <data name="Freezing" xml:space="preserve">
+    <value>Freezing</value>
+  </data>
   <data name="generate a new set of recovery codes" xml:space="preserve">
     <value>generate a new set of recovery codes</value>
   </data>
@@ -257,6 +398,18 @@
   </data>
   <data name="Generate two-factor authentication (2FA) recovery codes" xml:space="preserve">
     <value>Generate two-factor authentication (2FA) recovery codes</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hello</value>
+  </data>
+  <data name="Hello World!" xml:space="preserve">
+    <value>Hello World!</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Hot" xml:space="preserve">
+    <value>Hot</value>
   </data>
   <data name="If you reset your authenticator key your authenticator app will not work until you reconfigure it." xml:space="preserve">
     <value>If you reset your authenticator key your authenticator app will not work until you reconfigure it.</value>
@@ -297,6 +450,12 @@
   <data name="log in with a recovery code" xml:space="preserve">
     <value>log in with a recovery code</value>
   </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
   <data name="Manage email" xml:space="preserve">
     <value>Manage email</value>
   </data>
@@ -308,6 +467,9 @@
   </data>
   <data name="Manage your passkeys" xml:space="preserve">
     <value>Manage your passkeys</value>
+  </data>
+  <data name="Mild" xml:space="preserve">
+    <value>Mild</value>
   </data>
   <data name="My passkey" xml:space="preserve">
     <value>My passkey</value>
@@ -450,6 +612,9 @@
   <data name="Scan the QR Code or enter this key" xml:space="preserve">
     <value>Scan the QR Code or enter this key</value>
   </data>
+  <data name="Scorching" xml:space="preserve">
+    <value>Scorching</value>
+  </data>
   <data name="Send verification email" xml:space="preserve">
     <value>Send verification email</value>
   </data>
@@ -461,6 +626,18 @@
   </data>
   <data name="Set your password" xml:space="preserve">
     <value>Set your password</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="Temp. (C)" xml:space="preserve">
+    <value>Temp. (C)</value>
+  </data>
+  <data name="Temperature in Celsius" xml:space="preserve">
+    <value>Temperature in Celsius</value>
+  </data>
+  <data name="Temperature in Fahrenheit" xml:space="preserve">
+    <value>Temperatur in Fahrenheit</value>
   </data>
   <data name="Thank you for confirming your email change." xml:space="preserve">
     <value>Thank you for confirming your email change.</value>
@@ -494,6 +671,9 @@
   </data>
   <data name="This action only disables 2FA." xml:space="preserve">
     <value>This action only disables 2FA.</value>
+  </data>
+  <data name="This component demonstrates showing data." xml:space="preserve">
+    <value>This component demonstrates showing data.</value>
   </data>
   <data name="To use an authenticator app go through the following steps:" xml:space="preserve">
     <value>To use an authenticator app go through the following steps:</value>
@@ -533,6 +713,18 @@
   </data>
   <data name="Verify" xml:space="preserve">
     <value>Verify</value>
+  </data>
+  <data name="Warm" xml:space="preserve">
+    <value>Warm</value>
+  </data>
+  <data name="Weather" xml:space="preserve">
+    <value>Weather</value>
+  </data>
+  <data name="Welcome to your new app." xml:space="preserve">
+    <value>Welcome to your new app.</value>
+  </data>
+  <data name="You are authenticated" xml:space="preserve">
+    <value>You are authenticated</value>
   </data>
   <data name="You can" xml:space="preserve">
     <value>You can</value>

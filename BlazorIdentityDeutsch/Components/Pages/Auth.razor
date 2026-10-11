@@ -1,13 +1,17 @@
-﻿@page "/auth"
+﻿@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<IdentityTexts> T
+@page "/auth"
 
 @using Microsoft.AspNetCore.Authorization
 
 @attribute [Authorize]
 
-<PageTitle>Auth</PageTitle>
-
-<h1>You are authenticated</h1>
+<PageTitle>@T["Auth"]</PageTitle>
+<div class="page-title">
+    <span class="bid bid-unlock" aria-hidden="true"></span>
+    <span>@T["You are authenticated"]</span>
+</div>
 
 <AuthorizeView>
-    Hello @context.User.Identity?.Name!
+    @T["Hello"] @context.User.Identity?.Name!
 </AuthorizeView>

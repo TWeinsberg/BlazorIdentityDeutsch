@@ -9,14 +9,16 @@ using System.Globalization;
 
 namespace BlazorIdentityDeutsch {
     public partial class Program {
-        private static void Main(string[] args) {
-            var builder = WebApplication.CreateBuilder(args);
+        private static async Task Main() {
+            var builder = WebApplication.CreateBuilder();
 
             // Add services to the container.
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
 
-            // Step1: Vorbereitung Localization
+            // Step1.1: Vorbereitung Localization Order Resources anlegen
+            // Step1.2: IdentityTexts.resx + IdentityTexts.de.resx erstellen (Sparversion)
+            // Step1.3: Resourcen Order einbinden
             builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             builder.Services.AddCascadingAuthenticationState();
@@ -38,6 +40,7 @@ namespace BlazorIdentityDeutsch {
                 options.SignIn.RequireConfirmedAccount = true;
                 options.Stores.SchemaVersion = IdentitySchemaVersions.Version3;
             })
+                .AddRoles<IdentityRole>() // Step2.3: Rollen Management aktivieren
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddSignInManager()
                 .AddDefaultTokenProviders();
@@ -55,20 +58,28 @@ namespace BlazorIdentityDeutsch {
                 app.UseHsts();
             }
 
-            //Vorbereitung Localization
+            // Step2.4: Rollenmanagement konfigurieren
+            await IdentityRoleInitializer.InitializeAsync(app.Services);
+            
+            // Step1.4: Verwendete Sprachen definieren
             var supportedCultures = new[] {
-        new CultureInfo("de-DE"),
-        new CultureInfo("de"),
-        new CultureInfo("en-US"),
-        new CultureInfo("en")
-    };
+                new CultureInfo("de-DE"),
+                new CultureInfo("de"),
+                new CultureInfo("en-US"),
+                new CultureInfo("en")
+            };
 
+            // Step1.5: Verwendete Sprachen konfigurieren und Default-Sprache festlegen
             var localizationOptions = new RequestLocalizationOptions {
                 DefaultRequestCulture = new RequestCulture("de"),
                 SupportedCultures = supportedCultures,
                 SupportedUICultures = supportedCultures
             };
-            localizationOptions.RequestCultureProviders.Clear();
+
+            // Step1.5.1: Bei Problemen alte Einstellungen löschen
+            //localizationOptions.RequestCultureProviders.Clear();
+
+            // Step1.6: Konfigurierte Sprachen aktivieren
             app.UseRequestLocalization(localizationOptions);
 
             app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);

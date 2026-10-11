@@ -1,7 +1,14 @@
-﻿@page "/"
+﻿@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<IdentityTexts> T
+@page "/"
 
-<PageTitle>Home</PageTitle>
+<PageTitle>@T["Home"]</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="page-title">
+    <span class="bid bid-house-door-fill" aria-hidden="true"></span>
+    <span>@T["Home"]</span>
+</div>
 
-Welcome to your new app.
+<h1>@T["Hello, world!"]</h1>
+
+@T["Welcome to your new app."]

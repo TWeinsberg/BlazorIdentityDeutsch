@@ -1,13 +1,18 @@
-﻿@page "/counter"
+﻿@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<IdentityTexts> T
+@page "/counter"
 @rendermode InteractiveServer
 
-<PageTitle>Counter</PageTitle>
+<PageTitle>@T["Counter"]</PageTitle>
 
-<h1>Counter</h1>
+<div class="page-title">
+    <span class="bid bid-house-door-fill" aria-hidden="true"></span>
+    <span>@T["Counter"]</span>
+</div>
 
-<p role="status">Current count: @currentCount</p>
+<p role="status">@T["Current count:"] @currentCount</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="IncrementCount">@T["Click me"]</button>
 
 @code {
     private int currentCount = 0;

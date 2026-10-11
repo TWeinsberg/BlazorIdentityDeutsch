@@ -1,0 +1,288 @@
+﻿@*
+ * Step2.7 UI Admin Userverwaltung erstellen
+ *@
+
+@page "/admin/users"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore
+@using BlazorIdentityDeutsch.Data
+
+@attribute [Authorize(Roles = ApplicationRoles.Admin)]
+@rendermode InteractiveServer
+
+@inject UserManager<ApplicationUser> UserManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<div class="page-title">
+    <span class="bid bid-person-gear" aria-hidden="true"></span>
+    <span>Benutzerverwaltung</span>
+</div>
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="alert @(isError ? "alert-danger" : "alert-success")">
+        @message
+    </div>
+}
+
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>E-Mail</th>
+            <th>Aktuelle Rolle</th>
+            <th>Bestätigt</th>
+            <th>Neue Rolle</th>
+            <th>Aktion</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in users) {
+            var isCurrentAdmin = item.Id == currentUserId && item.Role == ApplicationRoles.Admin;
+
+            <tr @key="item.Id">
+                <td>
+                    @item.Email
+
+                    @if (item.Id == currentUserId) {
+                        <span class="badge bg-secondary ms-2">Ich</span>
+                    }
+                </td>
+
+                <td>@item.Role</td>
+
+                <td>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input"
+                               type="checkbox"
+                               checked="@item.EmailConfirmed"
+                               disabled="@(busy || isCurrentAdmin)"
+                               @onchange="async e => await ChangeEmailConfirmedAsync(item, e.Value is true)" />
+
+                        <label class="form-check-label">
+                            @(item.EmailConfirmed ? "Bestätigt" : "Unbestätigt")
+                        </label>
+                    </div>
+                </td>
+
+                <td>
+                    <select class="form-select form-select-sm"
+                            @bind="item.SelectedRole"
+                            disabled="@busy">
+                        @foreach (var role in ApplicationRoles.All)
+                        {
+                            <option value="@role"
+                                    disabled="@(isCurrentAdmin &&
+                                                role != ApplicationRoles.Admin)">
+                                @role
+                            </option>
+                        }
+                    </select>
+                </td>
+
+                <td>
+                    <button class="btn btn-primary btn-sm"
+                            disabled="@(busy ||
+                                        item.Role == item.SelectedRole ||
+                                        (isCurrentAdmin &&
+                                         item.SelectedRole != ApplicationRoles.Admin))"
+                            @onclick="() => ChangeRoleAsync(item)">
+                        Speichern
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@code {
+    private List<UserEntry> users = [];
+    private string? message;
+    private bool isError;
+    private bool busy;
+
+    private string? currentUserId;
+
+    protected override async Task OnInitializedAsync() {
+        var authState = await AuthenticationStateProvider
+            .GetAuthenticationStateAsync();
+
+        var currentUser = await UserManager.GetUserAsync(authState.User);
+        currentUserId = currentUser?.Id;
+
+        await LoadAsync();
+    }
+
+    private async Task LoadAsync() {
+        var accounts = await UserManager.Users
+            .AsNoTracking()
+            .OrderBy(u => u.Email)
+            .ToListAsync();
+
+        var result = new List<UserEntry>();
+
+        foreach (var user in accounts) {
+            var roles = await UserManager.GetRolesAsync(user);
+
+            var role = roles.FirstOrDefault() ?? ApplicationRoles.Guest;
+
+            result.Add(new UserEntry {
+                Id = user.Id,
+                Email = user.Email ?? "",
+                EmailConfirmed = user.EmailConfirmed,
+                Role = role,
+                SelectedRole = role
+            });
+        }
+
+        users = result;
+    }
+
+    private async Task ChangeRoleAsync(UserEntry entry) {
+        if (busy) return;
+
+        busy = true;
+        message = null;
+        isError = false;
+
+        try {
+            var user = await UserManager.FindByIdAsync(entry.Id);
+
+            if (user is null) {
+                SetError("Benutzer nicht gefunden.");
+                return;
+            }
+
+            var newRole = entry.SelectedRole;
+
+            if (!ApplicationRoles.All.Contains(newRole)) {
+                SetError("Ungültige Rolle.");
+                return;
+            }
+
+            if (newRole == ApplicationRoles.Registered && !user.EmailConfirmed) {
+                SetError("Die E-Mail-Adresse muss zuerst bestätigt werden.");
+                return;
+            }
+
+            var currentRoles = await UserManager.GetRolesAsync(user);
+
+            // Letzten Administrator schützen
+            if (currentRoles.Contains(ApplicationRoles.Admin) && newRole != ApplicationRoles.Admin) {
+                var admins = await UserManager.GetUsersInRoleAsync(
+                    ApplicationRoles.Admin);
+
+                if (admins.Count <= 1) {
+                    SetError("Der letzte Administrator kann nicht herabgestuft werden.");
+                    return;
+                }
+            }
+
+            // Neue Rolle zuerst vergeben
+            if (!currentRoles.Contains(newRole)) {
+                var addResult = await UserManager.AddToRoleAsync(user, newRole);
+
+                if (!addResult.Succeeded) {
+                    SetError(string.Join("; ", addResult.Errors.Select(e => e.Description)));
+                    return;
+                }
+            }
+
+            // Andere Rollen entfernen
+            var rolesToRemove = currentRoles
+                .Where(r => r != newRole)
+                .ToArray();
+
+            if (rolesToRemove.Length > 0) {
+                var removeResult = await UserManager.RemoveFromRolesAsync(user, rolesToRemove);
+
+                if (!removeResult.Succeeded) {
+                    SetError(string.Join("; ", removeResult.Errors.Select(e => e.Description)));
+                    return;
+                }
+            }
+
+            var stampResult = await UserManager.UpdateSecurityStampAsync(user);
+
+            if (!stampResult.Succeeded) {
+                SetError(string.Join("; ", stampResult.Errors.Select(e => e.Description)));
+                return;
+            }
+
+            message = $"{user.Email}: Rolle auf {newRole} geändert.";
+
+            await LoadAsync();
+        } catch (Exception ex) {
+            SetError($"Fehler beim Ändern der Rolle: {ex.Message}");
+        } finally {
+            busy = false;
+        }
+    }
+
+    
+    private async Task ChangeEmailConfirmedAsync(UserEntry entry, bool confirmed) {
+        if (busy) return;
+
+        if (entry.Id == currentUserId) {
+            SetError("Du kannst deine eigene E-Mail-Bestätigung nicht ändern.");
+            return;
+        }
+
+        busy = true;
+        message = null;
+        isError = false;
+
+        try {
+            var user = await UserManager.FindByIdAsync(entry.Id);
+
+            if (user is null) {
+                SetError("Benutzer nicht gefunden.");
+                return;
+            }
+
+            if (user.EmailConfirmed == confirmed) return;
+
+            user.EmailConfirmed = confirmed;
+
+            var result = await UserManager.UpdateAsync(user);
+
+            if (!result.Succeeded) {
+                SetError(string.Join("; ", result.Errors.Select(e => e.Description)));
+                return;
+            }
+
+            var stampResult = await UserManager.UpdateSecurityStampAsync(user);
+
+            if (!stampResult.Succeeded) {
+                SetError(string.Join("; ", stampResult.Errors.Select(e => e.Description)));
+                return;
+            }
+
+            message = confirmed
+                ? $"{user.Email}: E-Mail-Adresse bestätigt."
+                : $"{user.Email}: E-Mail-Bestätigung aufgehoben.";
+        } catch (Exception ex) {
+            SetError($"Fehler beim Ändern der E-Mail-Bestätigung: {ex.Message}");
+        } finally {
+            await LoadAsync();
+            busy = false;
+        }
+    }
+
+
+    private void SetError(string text) {
+        message = text;
+        isError = true;
+    }
+
+    private sealed class UserEntry {
+        public string Id { get; set; } = "";
+        public string Email { get; set; } = "";
+        public bool EmailConfirmed { get; set; }
+        public string Role { get; set; } = "";
+        public string SelectedRole { get; set; } = "";
+    }
+}

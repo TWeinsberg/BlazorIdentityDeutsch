@@ -1,11 +1,16 @@
-﻿@page "/weather"
+﻿@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<IdentityTexts> T
+@page "/weather"
 @attribute [StreamRendering]
 
-<PageTitle>Weather</PageTitle>
+<PageTitle>@T["Weather"]</PageTitle>
 
-<h1>Weather</h1>
+<div class="page-title">
+    <span class="bid bid-clouds" aria-hidden="true"></span>
+    <span>@T["Weather"]</span>
+</div>
 
-<p>This component demonstrates showing data.</p>
+<p>@T["This component demonstrates showing data."]</p>
 
 @if (forecasts == null)
 {
@@ -16,10 +21,10 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>Date</th>
-                <th aria-label="Temperature in Celsius">Temp. (C)</th>
-                <th aria-label="Temperature in Fahrenheit">Temp. (F)</th>
-                <th>Summary</th>
+                <th>@T["Date"]</th>
+                <th aria-label="@T["Temperature in Celsius"]" title="@T["Temperature in Celsius"]">@T["Temp. (C)"]</th>
+                <th aria-label="@T["Temperature in Fahrenheit"]" title="@T["Temperature in Fahrenheit"]">@T["Temp. (F)"]</th>
+                <th>@T["Summary"]</th>
             </tr>
         </thead>
         <tbody>
@@ -39,13 +44,23 @@ else
 @code {
     private WeatherForecast[]? forecasts;
 
-    protected override async Task OnInitializedAsync()
-    {
+    protected override async Task OnInitializedAsync() {
         // Simulate asynchronous loading to demonstrate streaming rendering
         await Task.Delay(500);
 
         var startDate = DateOnly.FromDateTime(DateTime.Now);
-        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
+        var summaries = new[] { 
+            T["Freezing"], 
+            T["Bracing"], 
+            T["Chilly"], 
+            T["Cool"], 
+            T["Mild"], 
+            T["Warm"], 
+            T["Balmy"], 
+            T["Hot"], 
+            T["Sweltering"], 
+            T["Scorching"] 
+        };
         forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
             Date = startDate.AddDays(index),
