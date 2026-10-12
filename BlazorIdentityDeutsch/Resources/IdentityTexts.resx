@@ -783,4 +783,100 @@
   <data name="Your profile has been updated" xml:space="preserve">
     <value>Your profile has been updated</value>
   </data>
+  <data name="Confirm your email" xml:space="preserve">
+    <value>Confirm your email</value>
+  </data>
+  <data name="Reset your password" xml:space="preserve">
+    <value>Reset your password</value>
+  </data>
+  <data name="Please confirm your account by &lt;a href='{0}'&gt;clicking here&lt;/a&gt;." xml:space="preserve">
+    <value>Please confirm your account by &lt;a href='{0}'&gt;clicking here&lt;/a&gt;.</value>
+  </data>
+  <data name="Please reset your password by &lt;a href='{0}'&gt;clicking here&lt;/a&gt;." xml:space="preserve">
+    <value>Please reset your password by &lt;a href='{0}'&gt;clicking here&lt;/a&gt;.</value>
+  </data>
+  <data name="Please reset your password using the following code: {0}" xml:space="preserve">
+    <value>Please reset your password using the following code: {0}</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="An unhandled error has occurred." xml:space="preserve">
+    <value>An unhandled error has occurred.</value>
+  </data>
+  <data name="Sorry, the content you are looking for does not exist." xml:space="preserve">
+    <value>Sorry, the content you are looking for does not exist.</value>
+  </data>
+  <data name="Not Found" xml:space="preserve">
+    <value>Not found</value>
+  </data>
+  <data name="Sweltering" xml:space="preserve">
+    <value>Sweltering</value>
+  </data>
+  <data name="If you lose your device and don't have the recovery codes you will lose access to your account." xml:space="preserve">
+    <value>If you lose your device and don't have the recovery codes you will lose access to your account.</value>
+  </data>
+  <data name="Your password has been reset. Please" xml:space="preserve">
+    <value>Your password has been reset. Please</value>
+  </data>
+  <data name="Please check your email to reset your password." xml:space="preserve">
+    <value>Please check your email to reset your password.</value>
+  </data>
+  <data name="The password reset link is invalid." xml:space="preserve">
+    <value>The password reset link is invalid.</value>
+  </data>
+  <data name="This app does not currently have a real email sender registered, see" xml:space="preserve">
+    <value>This app does not currently have a real email sender registered, see</value>
+  </data>
+  <data name="for how to configure a real email sender." xml:space="preserve">
+    <value>for how to configure a real email sender.</value>
+  </data>
+  <data name="Normally this would be emailed:" xml:space="preserve">
+    <value>Normally this would be emailed:</value>
+  </data>
+  <data name="Remember this machine" xml:space="preserve">
+    <value>Remember this machine</value>
+  </data>
+  <data name="You have requested to log in with a recovery code. This login will not be remembered until you provide an authenticator app code at log in or disable 2FA and log in again." xml:space="preserve">
+    <value>You have requested to log in with a recovery code. This login will not be remembered until you provide an authenticator app code at log in or disable 2FA and log in again.</value>
+  </data>
+  <data name="Disabling 2FA does not change the keys used in authenticator apps. If you wish to change the key" xml:space="preserve">
+    <value>Disabling 2FA does not change the keys used in authenticator apps. If you wish to change the key</value>
+  </data>
+  <data name="used in an authenticator app you should" xml:space="preserve">
+    <value>used in an authenticator app you should</value>
+  </data>
+  <data name="Cannot disable 2FA for user as it's not currently enabled." xml:space="preserve">
+    <value>Cannot disable 2FA for user as it's not currently enabled.</value>
+  </data>
+  <data name="Unexpected error occurred disabling 2FA." xml:space="preserve">
+    <value>Unexpected error occurred disabling 2FA.</value>
+  </data>
+  <data name="2fa has been disabled. You can reenable 2fa when you setup an authenticator app" xml:space="preserve">
+    <value>2fa has been disabled. You can reenable 2fa when you setup an authenticator app</value>
+  </data>
+  <data name="Download a two-factor authenticator app like Microsoft Authenticator for" xml:space="preserve">
+    <value>Download a two-factor authenticator app like Microsoft Authenticator for</value>
+  </data>
+  <data name="Google Authenticator for" xml:space="preserve">
+    <value>Google Authenticator for</value>
+  </data>
+  <data name="Once you have scanned the QR code or input the key above, your two factor authentication app will provide you with a unique code. Enter the code in the confirmation box below." xml:space="preserve">
+    <value>Once you have scanned the QR code or input the key above, your two factor authentication app will provide you with a unique code. Enter the code in the confirmation box below.</value>
+  </data>
+  <data name="and" xml:space="preserve">
+    <value>and</value>
+  </data>
+  <data name="Remove this" xml:space="preserve">
+    <value>Remove this</value>
+  </data>
+  <data name="login from your account" xml:space="preserve">
+    <value>login from your account</value>
+  </data>
+  <data name="Generating new recovery codes does not change the keys used in authenticator apps. If you wish to change the key used in an authenticator app you should" xml:space="preserve">
+    <value>Generating new recovery codes does not change the keys used in authenticator apps. If you wish to change the key used in an authenticator app you should</value>
+  </data>
+  <data name="Cannot generate recovery codes for user because they do not have 2FA enabled." xml:space="preserve">
+    <value>Cannot generate recovery codes for user because they do not have 2FA enabled.</value>
+  </data>
 </root>

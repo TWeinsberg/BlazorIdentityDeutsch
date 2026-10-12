@@ -630,9 +630,6 @@
   <data name="Summary" xml:space="preserve">
     <value>Zusammenfassung</value>
   </data>
-  <data name="Sweltering" xml:space="preserve">
-    <value>Schwelend Heiß</value>
-  </data>
   <data name="Temp. (C)" xml:space="preserve">
     <value>Temp. (°C)</value>
   </data>
@@ -786,4 +783,106 @@
   <data name="Your profile has been updated" xml:space="preserve">
     <value>Dein Profil wurde aktualisiert</value>
   </data>
+  <data name="Confirm your email" xml:space="preserve">
+    <value>Bestätigen Sie Ihre E-Mail-Adresse</value>
+  </data>
+  <data name="Reset your password" xml:space="preserve">
+    <value>Passwort zurücksetzen</value>
+  </data>
+  <data name="Please confirm your account by &lt;a href='{0}'&gt;clicking here&lt;/a&gt;." xml:space="preserve">
+    <value>Bitte bestätigen Sie Ihr Benutzerkonto über folgenden Link: {0}</value>
+  </data>
+  <data name="Please reset your password by &lt;a href='{0}'&gt;clicking here&lt;/a&gt;." xml:space="preserve">
+    <value>Bitte setzen Sie Ihr Passwort über folgenden Link zurück: {0}</value>
+  </data>
+  <data name="Please reset your password using the following code: {0}" xml:space="preserve">
+    <value>Bitte setzen Sie Ihr Passwort mit folgendem Code zurück: {0}</value>
+  </data>
+  <data name="Sweltering" xml:space="preserve">
+    <value>Schwelend Heiß</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>Über uns</value>
+  </data>
+  <data name="An unhandled error has occurred." xml:space="preserve">
+    <value>Es ist ein unbehandelter Fehler aufgetreten.</value>
+  </data>
+  <data name="Sorry, the content you are looking for does not exist." xml:space="preserve">
+    <value>Leider gibt es den von Ihnen gesuchten Inhalt nicht.</value>
+  </data>
+  <data name="Not Found" xml:space="preserve">
+    <value>Nicht gefunden</value>
+  </data>
+<data name="If you lose your device and don't have the recovery codes you will lose access to your account." xml:space="preserve">
+  <value>Wenn Sie Ihr Gerät verlieren und keine Wiederherstellungscodes besitzen, verlieren Sie den Zugriff auf Ihr Benutzerkonto.</value>
+</data>
+<data name="Your password has been reset. Please" xml:space="preserve">
+  <value>Ihr Passwort wurde zurückgesetzt. Bitte</value>
+</data>
+<data name="Please check your email to reset your password." xml:space="preserve">
+  <value>Bitte überprüfen Sie Ihre E-Mails, um Ihr Passwort zurückzusetzen.</value>
+</data>
+<data name="The password reset link is invalid." xml:space="preserve">
+  <value>Der Link zum Zurücksetzen des Passworts ist ungültig.</value>
+</data>
+<data name="This app does not currently have a real email sender registered, see" xml:space="preserve">
+  <value>Für diese Anwendung ist derzeit kein echter E-Mail-Versand eingerichtet. Weitere Informationen finden Sie unter</value>
+</data>
+<data name="for how to configure a real email sender." xml:space="preserve">
+  <value>zur Einrichtung eines E-Mail-Versanddienstes.</value>
+</data>
+<data name="Normally this would be emailed:" xml:space="preserve">
+  <value>Normalerweise würde Folgendes per E-Mail versendet:</value>
+</data>
+<data name="Click here to confirm your account" xml:space="preserve">
+  <value>Klicken Sie hier, um Ihr Benutzerkonto zu bestätigen</value>
+</data>
+<data name="Please check your email to confirm your account." xml:space="preserve">
+  <value>Bitte überprüfen Sie Ihre E-Mails, um Ihr Benutzerkonto zu bestätigen.</value>
+</data>
+<data name="Remember this machine" xml:space="preserve">
+  <value>Diesem Gerät vertrauen</value>
+</data>
+<data name="You have requested to log in with a recovery code. This login will not be remembered until you provide an authenticator app code at log in or disable 2FA and log in again." xml:space="preserve">
+  <value>Sie haben sich mit einem Wiederherstellungscode angemeldet. Diese Anmeldung wird nicht dauerhaft gespeichert, bis Sie sich mit einem Code aus Ihrer Authenticator-App anmelden oder die Zwei-Faktor-Authentifizierung deaktivieren und sich erneut anmelden.</value>
+</data>
+<data name="Disabling 2FA does not change the keys used in authenticator apps. If you wish to change the key" xml:space="preserve">
+  <value>Das Deaktivieren der Zwei-Faktor-Authentifizierung ändert nicht die Schlüssel, die in Authenticator-Apps verwendet werden. Wenn Sie den Schlüssel ändern möchten,</value>
+</data>
+<data name="used in an authenticator app you should" xml:space="preserve">
+  <value>der in einer Authenticator-App verwendet wird, sollten Sie</value>
+</data>
+<data name="Cannot disable 2FA for user as it's not currently enabled." xml:space="preserve">
+  <value>Die Zwei-Faktor-Authentifizierung kann nicht deaktiviert werden, da sie für diesen Benutzer derzeit nicht aktiviert ist.</value>
+</data>
+<data name="Unexpected error occurred disabling 2FA." xml:space="preserve">
+  <value>Beim Deaktivieren der Zwei-Faktor-Authentifizierung ist ein unerwarteter Fehler aufgetreten.</value>
+</data>
+<data name="2fa has been disabled. You can reenable 2fa when you setup an authenticator app" xml:space="preserve">
+  <value>Die Zwei-Faktor-Authentifizierung wurde deaktiviert. Sie können sie erneut aktivieren, indem Sie eine Authenticator-App einrichten.</value>
+</data>
+<data name="Download a two-factor authenticator app like Microsoft Authenticator for" xml:space="preserve">
+  <value>Laden Sie eine App für die Zwei-Faktor-Authentifizierung herunter, beispielsweise Microsoft Authenticator für</value>
+</data>
+<data name="Google Authenticator for" xml:space="preserve">
+  <value>Google Authenticator für</value>
+</data>
+<data name="Once you have scanned the QR code or input the key above, your two factor authentication app will provide you with a unique code. Enter the code in the confirmation box below." xml:space="preserve">
+  <value>Nachdem Sie den QR-Code gescannt oder den oben angegebenen Schlüssel eingegeben haben, zeigt Ihre Authenticator-App einen einmaligen Code an. Geben Sie diesen Code in das Bestätigungsfeld unten ein.</value>
+</data>
+<data name="and" xml:space="preserve">
+  <value>und</value>
+</data>
+<data name="Remove this" xml:space="preserve">
+  <value>Diese</value>
+</data>
+<data name="login from your account" xml:space="preserve">
+  <value>Anmeldemethode aus Ihrem Benutzerkonto entfernen</value>
+</data>
+<data name="Generating new recovery codes does not change the keys used in authenticator apps. If you wish to change the key used in an authenticator app you should" xml:space="preserve">
+  <value>Das Erstellen neuer Wiederherstellungscodes ändert nicht die Schlüssel, die in Authenticator-Apps verwendet werden. Wenn Sie den Schlüssel einer Authenticator-App ändern möchten, sollten Sie</value>
+</data>
+<data name="Cannot generate recovery codes for user because they do not have 2FA enabled." xml:space="preserve">
+  <value>Es können keine Wiederherstellungscodes erstellt werden, da die Zwei-Faktor-Authentifizierung für diesen Benutzer nicht aktiviert ist.</value>
+</data>
 </root>

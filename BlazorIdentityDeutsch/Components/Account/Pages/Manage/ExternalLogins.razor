@@ -31,7 +31,7 @@
                                 <div>
                                     <input type="hidden" name="@nameof(LoginProvider)" value="@login.LoginProvider" />
                                     <input type="hidden" name="@nameof(ProviderKey)" value="@login.ProviderKey" />
-                                    <button type="submit" class="btn btn-primary" title="Remove this @login.ProviderDisplayName login from your account">@T["Remove"]</button>
+                                    <button type="submit" class="btn btn-primary" title="@T["Remove this"] @login.ProviderDisplayName @T["login from your account"]">@T["Remove"]</button>
                                 </div>
                             </form>
                         }

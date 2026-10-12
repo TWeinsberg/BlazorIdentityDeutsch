@@ -19,8 +19,8 @@
         <strong>@T["This action only disables 2FA."]</strong>
     </p>
     <p>
-        Disabling 2FA does not change the keys used in authenticator apps. If you wish to change the key
-        used in an authenticator app you should <a href="Account/Manage/ResetAuthenticator">@T["reset your authenticator keys."]</a>
+        @T["Disabling 2FA does not change the keys used in authenticator apps. If you wish to change the key"]
+        @T["used in an authenticator app you should"] <a href="Account/Manage/ResetAuthenticator">@T["reset your authenticator keys."]</a>
     </p>
 </div>
 
@@ -48,7 +48,7 @@
 
         if (HttpMethods.IsGet(HttpContext.Request.Method) && !await UserManager.GetTwoFactorEnabledAsync(user))
         {
-            throw new InvalidOperationException("Cannot disable 2FA for user as it's not currently enabled.");
+            throw new InvalidOperationException(T["Cannot disable 2FA for user as it's not currently enabled."]);
         }
     }
 
@@ -63,14 +63,14 @@
         var disable2faResult = await UserManager.SetTwoFactorEnabledAsync(user, false);
         if (!disable2faResult.Succeeded)
         {
-            throw new InvalidOperationException("Unexpected error occurred disabling 2FA.");
+            throw new InvalidOperationException(T["Unexpected error occurred disabling 2FA."]);
         }
 
         var userId = await UserManager.GetUserIdAsync(user);
         Logger.LogInformation("User with ID '{UserId}' has disabled 2fa.", userId);
         RedirectManager.RedirectToWithStatus(
             "Account/Manage/TwoFactorAuthentication",
-            "2fa has been disabled. You can reenable 2fa when you setup an authenticator app",
+            T["2fa has been disabled. You can reenable 2fa when you setup an authenticator app"],
             HttpContext);
     }
 }
