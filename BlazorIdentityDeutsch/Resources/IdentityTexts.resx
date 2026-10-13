@@ -159,8 +159,8 @@
   <data name="before you can log in with a recovery code." xml:space="preserve">
     <value>before you can log in with a recovery code.</value>
   </data>
-  <data name="Blazor-Identity (EN)" xml:space="preserve">
-    <value>Blazor-Identity (EN)</value>
+  <data name="PROJECT_DISPLAY_NAME (EN)" xml:space="preserve">
+    <value>PROJECT_DISPLAY_NAME (EN)</value>
   </data>
   <data name="Bracing" xml:space="preserve">
     <value>Bracing</value>
@@ -402,8 +402,8 @@
   <data name="Hello" xml:space="preserve">
     <value>Hello</value>
   </data>
-  <data name="Hello World!" xml:space="preserve">
-    <value>Hello World!</value>
+  <data name="Hello, world!" xml:space="preserve">
+    <value>Hello, world!</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
@@ -884,5 +884,95 @@
   </data>
   <data name="You have requested a password reset" xml:space="preserve">
     <value>you have requested a password reset</value>
+  </data>
+  <data name="Please confirm your email address" xml:space="preserve">
+    <value>Please confirm your email address</value>
+  </data>
+  <data name="If you did not request this action, you can ignore this email." xml:space="preserve">
+    <value>If you did not request this action, you can ignore this email.</value>
+  </data>
+  <data name="E-Mail confirmed" xml:space="preserve">
+    <value>E-Mail confirmed</value>
+  </data>
+  <data name="New Role" xml:space="preserve">
+    <value>New Role</value>
+  </data>
+  <data name="Confirmed" xml:space="preserve">
+    <value>Confirmed</value>
+  </data>
+  <data name="Guest" xml:space="preserve">
+    <value>Guest</value>
+  </data>
+  <data name="Registered" xml:space="preserve">
+    <value>Registered</value>
+  </data>
+  <data name="Unconfirmed" xml:space="preserve">
+    <value>Unconfirmed</value>
+  </data>
+  <data name="Current Role" xml:space="preserve">
+    <value>Current Role</value>
+  </data>
+  <data name="User not found." xml:space="preserve">
+    <value>User not found.</value>
+  </data>
+  <data name="Invalid role." xml:space="preserve">
+    <value>Invalid role.</value>
+  </data>
+  <data name="Email must be confirmed first." xml:space="preserve">
+    <value>Email must be confirmed first.</value>
+  </data>
+  <data name="The last administrator cannot be demoted." xml:space="preserve">
+    <value>The last administrator cannot be demoted.</value>
+  </data>
+  <data name="User role changed" xml:space="preserve">
+    <value>User role changed</value>
+  </data>
+  <data name="You cannot change your own email confirmation." xml:space="preserve">
+    <value>You cannot change your own email confirmation.</value>
+  </data>
+  <data name="You cannot delete your own account." xml:space="preserve">
+    <value>You cannot delete your own account.</value>
+  </data>
+  <data name="The last administrator cannot be deleted." xml:space="preserve">
+    <value>The last administrator cannot be deleted.</value>
+  </data>
+  <data name="User deleted" xml:space="preserve">
+    <value>User deleted</value>
+  </data>
+  <data name="{0}: Role changed to {1}." xml:space="preserve">
+    <value>{0}: Role changed to {1}.</value>
+  </data>
+  <data name="Error changing role: {0}" xml:space="preserve">
+    <value>Error changing role: {0}</value>
+  </data>
+  <data name="{0}: Email address confirmed." xml:space="preserve">
+    <value>{0}: Email address confirmed.</value>
+  </data>
+  <data name="{0}: Email confirmation revoked." xml:space="preserve">
+    <value>{0}: Email confirmation revoked.</value>
+  </data>
+  <data name="Error changing email confirmation: {0}" xml:space="preserve">
+    <value>Error changing email confirmation: {0}</value>
+  </data>
+  <data name="Do you really want to permanently delete user '{0}'?" xml:space="preserve">
+    <value>Do you really want to permanently delete user '{0}'?</value>
+  </data>
+  <data name="{0}: User deleted." xml:space="preserve">
+    <value>{0}: User deleted.</value>
+  </data>
+  <data name="Error deleting user: {0}" xml:space="preserve">
+    <value>Error deleting user: {0}</value>
+  </data>
+  <data name="Me" xml:space="preserve">
+    <value>Me</value>
+  </data>
+  <data name="Delete user" xml:space="preserve">
+    <value>Delete user</value>
+  </data>
+  <data name="Do you really want to permanently delete the following user?" xml:space="preserve">
+    <value>Do you really want to permanently delete the following user?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
   </data>
 </root>

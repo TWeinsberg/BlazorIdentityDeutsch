@@ -1,6 +1,8 @@
 ﻿@*
  * Step2.7 UI Admin Userverwaltung erstellen
  *@
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<IdentityTexts> T
 
 @page "/admin/users"
 @using Microsoft.AspNetCore.Authorization
@@ -15,13 +17,14 @@
 @inject UserManager<ApplicationUser> UserManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
+<PageTitle>@T["Usermanagement"]</PageTitle>
+
 <div class="page-title">
     <span class="bid bid-person-gear" aria-hidden="true"></span>
-    <span>Benutzerverwaltung</span>
+    <span>@T["Usermanagement"]</span>
 </div>
 
-@if (!string.IsNullOrEmpty(message))
-{
+@if (!string.IsNullOrEmpty(message)) {
     <div class="alert @(isError ? "alert-danger" : "alert-success")">
         @message
     </div>
@@ -30,11 +33,11 @@
 <table class="table table-striped align-middle">
     <thead>
         <tr>
-            <th>E-Mail</th>
-            <th>Aktuelle Rolle</th>
-            <th>Bestätigt</th>
-            <th>Neue Rolle</th>
-            <th>Aktion</th>
+            <th>@T["E-Mail"]</th>
+            <th>@T["Current Role"]</th>
+            <th>@T["Confirmed"]</th>
+            <th>@T["New Role"]</th>
+            <th>@T["Action"]</th>
         </tr>
     </thead>
 
@@ -47,11 +50,11 @@
                     @item.Email
 
                     @if (item.Id == currentUserId) {
-                        <span class="badge bg-secondary ms-2">Ich</span>
+                        <span class="badge bg-secondary ms-2">@T["Me"]</span>
                     }
                 </td>
 
-                <td>@item.Role</td>
+                <td>@T[item.Role]</td>
 
                 <td>
                     <div class="form-check form-switch">
@@ -62,41 +65,64 @@
                                @onchange="async e => await ChangeEmailConfirmedAsync(item, e.Value is true)" />
 
                         <label class="form-check-label">
-                            @(item.EmailConfirmed ? "Bestätigt" : "Unbestätigt")
+                            @(item.EmailConfirmed ? @T["Confirmed"] : @T["Unconfirmed"])
                         </label>
                     </div>
                 </td>
 
                 <td>
-                    <select class="form-select form-select-sm"
-                            @bind="item.SelectedRole"
-                            disabled="@busy">
-                        @foreach (var role in ApplicationRoles.All)
-                        {
-                            <option value="@role"
-                                    disabled="@(isCurrentAdmin &&
-                                                role != ApplicationRoles.Admin)">
-                                @role
+                    <select class="form-select form-select-sm" @bind="item.SelectedRole" disabled="@busy">
+                        @foreach (var role in ApplicationRoles.All) {
+                            <option value="@role" disabled="@(isCurrentAdmin && role != ApplicationRoles.Admin)">
+                                @T[role]
                             </option>
                         }
                     </select>
                 </td>
 
                 <td>
-                    <button class="btn btn-primary btn-sm"
+                    <button class="btn btn-success btn-sm"
                             disabled="@(busy ||
                                         item.Role == item.SelectedRole ||
                                         (isCurrentAdmin &&
                                          item.SelectedRole != ApplicationRoles.Admin))"
                             @onclick="() => ChangeRoleAsync(item)">
-                        Speichern
+                        @T["Save"]
+                    </button>
+                    <button class="btn btn-danger btn-sm" disabled="@(busy || isCurrentAdmin)" @onclick="() => deleteEntry = item">
+                        @T["Delete"]
                     </button>
                 </td>
             </tr>
         }
     </tbody>
-
 </table>
+
+@if (deleteEntry is not null) {
+    <div class="modal fade show d-block" tabindex="-1" role="dialog" aria-modal="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@T["Delete user"]</h5>
+                    <button type="button" class="btn-close" disabled="@busy" @onclick="() => deleteEntry = null"></button>
+                </div>
+                <div class="modal-body">
+                    <p>@T["Do you really want to permanently delete the following user?"]</p>
+                    <strong>@deleteEntry.Email</strong>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" disabled="@busy" @onclick="() => deleteEntry = null">
+                        @T["Cancel"]
+                    </button>
+                    <button class="btn btn-danger" disabled="@busy" @onclick="() => DeleteUserAsync(deleteEntry)">
+                        @T["Delete"]
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+}
 
 @code {
     private List<UserEntry> users = [];
@@ -105,6 +131,8 @@
     private bool busy;
 
     private string? currentUserId;
+
+    private UserEntry? deleteEntry;
 
     protected override async Task OnInitializedAsync() {
         var authState = await AuthenticationStateProvider
@@ -152,19 +180,19 @@
             var user = await UserManager.FindByIdAsync(entry.Id);
 
             if (user is null) {
-                SetError("Benutzer nicht gefunden.");
+                SetError(T["User not found."]);
                 return;
             }
 
             var newRole = entry.SelectedRole;
 
             if (!ApplicationRoles.All.Contains(newRole)) {
-                SetError("Ungültige Rolle.");
+                SetError(T["Invalid role."]);
                 return;
             }
 
             if (newRole == ApplicationRoles.Registered && !user.EmailConfirmed) {
-                SetError("Die E-Mail-Adresse muss zuerst bestätigt werden.");
+                SetError(T["Email must be confirmed first."]);
                 return;
             }
 
@@ -176,7 +204,7 @@
                     ApplicationRoles.Admin);
 
                 if (admins.Count <= 1) {
-                    SetError("Der letzte Administrator kann nicht herabgestuft werden.");
+                    SetError(T["The last administrator cannot be demoted."]);
                     return;
                 }
             }
@@ -212,22 +240,21 @@
                 return;
             }
 
-            message = $"{user.Email}: Rolle auf {newRole} geändert.";
+            message = T["{0}: Role changed to {1}.", user.Email!, newRole];
 
             await LoadAsync();
         } catch (Exception ex) {
-            SetError($"Fehler beim Ändern der Rolle: {ex.Message}");
+            SetError(T["Error changing role: {0}", ex.Message]);
         } finally {
             busy = false;
         }
     }
 
-    
     private async Task ChangeEmailConfirmedAsync(UserEntry entry, bool confirmed) {
         if (busy) return;
 
         if (entry.Id == currentUserId) {
-            SetError("Du kannst deine eigene E-Mail-Bestätigung nicht ändern.");
+            SetError(T["You cannot change your own email confirmation."]);
             return;
         }
 
@@ -239,7 +266,7 @@
             var user = await UserManager.FindByIdAsync(entry.Id);
 
             if (user is null) {
-                SetError("Benutzer nicht gefunden.");
+                SetError(T["User not found."]);
                 return;
             }
 
@@ -262,16 +289,66 @@
             }
 
             message = confirmed
-                ? $"{user.Email}: E-Mail-Adresse bestätigt."
-                : $"{user.Email}: E-Mail-Bestätigung aufgehoben.";
+                ? T["{0}: Email address confirmed.", user.Email!]
+                : T["{0}: Email confirmation revoked.", user.Email!];
         } catch (Exception ex) {
-            SetError($"Fehler beim Ändern der E-Mail-Bestätigung: {ex.Message}");
+            SetError(T["Error changing email confirmation: {0}", ex.Message]);
         } finally {
             await LoadAsync();
             busy = false;
         }
     }
 
+    private async Task DeleteUserAsync(UserEntry entry) {
+        if (busy) return;
+
+        if (entry.Id == currentUserId) {
+            SetError(T["You cannot delete your own account."]);
+            deleteEntry = null;
+            return;
+        }
+
+        busy = true;
+        message = null;
+        isError = false;
+
+        try {
+            var user = await UserManager.FindByIdAsync(entry.Id);
+
+            if (user is null) {
+                SetError(T["User not found."]);
+                return;
+            }
+
+            var roles = await UserManager.GetRolesAsync(user);
+
+            // Letzten Administrator schützen
+            if (roles.Contains(ApplicationRoles.Admin)) {
+                var admins = await UserManager.GetUsersInRoleAsync(ApplicationRoles.Admin);
+
+                if (admins.Count <= 1) {
+                    SetError(T["The last administrator cannot be deleted."]);
+                    return;
+                }
+            }
+
+            var result = await UserManager.DeleteAsync(user);
+
+            if (!result.Succeeded) {
+                SetError(string.Join("; ", result.Errors.Select(e => e.Description)));
+                return;
+            }
+
+            message = T["{0}: User deleted.", entry.Email];
+            deleteEntry = null;
+
+            await LoadAsync();
+        } catch (Exception ex) {
+            SetError(T["Error deleting user: {0}", ex.Message]);
+        } finally {
+            busy = false;
+        }
+    }
 
     private void SetError(string text) {
         message = text;
