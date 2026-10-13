@@ -879,4 +879,10 @@
   <data name="Cannot generate recovery codes for user because they do not have 2FA enabled." xml:space="preserve">
     <value>Cannot generate recovery codes for user because they do not have 2FA enabled.</value>
   </data>
+  <data name="Your password reset code is" xml:space="preserve">
+    <value>Your password reset code is</value>
+  </data>
+  <data name="You have requested a password reset" xml:space="preserve">
+    <value>you have requested a password reset</value>
+  </data>
 </root>

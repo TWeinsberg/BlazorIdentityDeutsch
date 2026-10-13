@@ -1,6 +1,8 @@
 using BlazorIdentityDeutsch.Components;
 using BlazorIdentityDeutsch.Components.Account;
 using BlazorIdentityDeutsch.Data;
+using BlazorIdentityDeutsch.Models;
+using BlazorIdentityDeutsch.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
@@ -45,7 +47,16 @@ namespace BlazorIdentityDeutsch {
                 .AddSignInManager()
                 .AddDefaultTokenProviders();
 
-            builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
+            // Add Mail-Services for Identity
+            var smtpSettings = builder.Configuration
+                .GetSection("Smtp")
+                .Get<SmtpSettings>() ?? new();
+
+            if (smtpSettings.Enabled) {
+                builder.Services.AddScoped<IEmailSender<ApplicationUser>, IdentityEmailSender>();
+            } else {
+                builder.Services.AddScoped<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
+            }
 
             var app = builder.Build();
 
