@@ -3,6 +3,7 @@ global using BlazorIdentityDeutsch.Components.Account;
 global using BlazorIdentityDeutsch.Components.Account.Pages;
 global using BlazorIdentityDeutsch.Components.Account.Pages.Manage;
 global using BlazorIdentityDeutsch.Data;
+global using BlazorIdentityDeutsch.Interfaces;
 global using BlazorIdentityDeutsch.Models;
 global using BlazorIdentityDeutsch.Services;
 
@@ -27,5 +28,6 @@ global using Microsoft.Extensions.Options;
 global using Microsoft.Extensions.Primitives;
 
 global using System.Globalization;
+global using System.Linq.Expressions;
 global using System.Security.Claims;
 global using System.Text.Json;
