@@ -1,10 +1,4 @@
-﻿using BlazorIdentityDeutsch.Data;
-using BlazorIdentityDeutsch.Models;
-using MailKit.Security;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Localization;
-
-namespace BlazorIdentityDeutsch.Services {
+﻿namespace BlazorIdentityDeutsch.Services {
     public sealed class IdentityEmailSender(IConfiguration configuration, IWebHostEnvironment environment, IStringLocalizer<IdentityTexts> T ) : IEmailSender<ApplicationUser> {
 
         public async Task SendConfirmationLinkAsync(ApplicationUser user, string email, string confirmationLink) {

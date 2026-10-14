@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace BlazorIdentityDeutsch.Data {
+﻿namespace BlazorIdentityDeutsch.Data {
     // Step2.1: Rollenmanagement konfigurieren
     public static class IdentityRoleInitializer {
         public static async Task InitializeAsync(

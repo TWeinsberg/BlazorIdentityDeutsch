@@ -1,14 +1,3 @@
-using BlazorIdentityDeutsch.Components;
-using BlazorIdentityDeutsch.Components.Account;
-using BlazorIdentityDeutsch.Data;
-using BlazorIdentityDeutsch.Models;
-using BlazorIdentityDeutsch.Services;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.EntityFrameworkCore;
-using System.Globalization;
-
 namespace BlazorIdentityDeutsch {
     public partial class Program {
         private static async Task Main() {

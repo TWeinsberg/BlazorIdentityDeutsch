@@ -1,6 +1,5 @@
-﻿// https://ethereal.email/create //
-
-using MailKit.Security;
+﻿// Fake Mailserver Dienst zu Entwicklung
+// https://ethereal.email/create //
 
 namespace BlazorIdentityDeutsch.Models {
     public sealed class SmtpSettings {

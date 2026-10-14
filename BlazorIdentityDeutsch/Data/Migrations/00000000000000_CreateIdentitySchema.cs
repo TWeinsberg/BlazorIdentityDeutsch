@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-
-#nullable disable
+﻿#nullable disable
 
 namespace BlazorIdentityDeutsch.Migrations
 {
